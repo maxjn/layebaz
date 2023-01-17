@@ -600,6 +600,12 @@ Contact
   border: 1.5px solid var(--border-light);
   text-align: right;
 }
+.form-erea {
+  height: 13rem;
+  border-radius: 1rem;
+  border: 1.5px solid var(--border-light);
+  text-align: right;
+}
 .form-select {
   height: 3rem;
   border-radius: 5rem;
@@ -613,7 +619,8 @@ Contact
   box-shadow: none;
 }
 .form-control:focus,
-.form-select:focus {
+.form-select:focus,
+.form-erea:focus {
   border-color: var(--primary);
   outline: 0;
   box-shadow: none;
@@ -900,6 +907,13 @@ input.form-product {
   text-align: center;
   vertical-align: middle;
   color: var(--text-dark);
+}
+
+a.bi-download {
+  color: var(--white);
+}
+a.bi-download:hover {
+  color: var(--primary);
 }
 
 /* ------------------------

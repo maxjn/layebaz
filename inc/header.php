@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -36,6 +39,9 @@
 
     <!--== spacing -->
     <link href="assets/css/spacing.css" rel="stylesheet" type="text/css" />
+
+    <!--== Alert Style -->
+    <link href="assets/css/stylealert.css" rel="stylesheet" type="text/css" />
 
     <!--== theme.min -->
     <link href="assets/css/theme.min.css" rel="stylesheet" />
@@ -92,21 +98,28 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="product-shop.php">فروشگاه</a>
                                         </li>
+                                        <?php //بررسی وضعیت ورود کاربر
+                                        if (
+                                            isset($_SESSION["state_login"]) && $_SESSION["state_login"] === true &&
+                                            ($_SESSION["user_type"] == 'admin' || $_SESSION["user_type"] == 'seller')
+                                        ) { ?>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#"
                                                 data-bs-toggle="dropdown">مدیریت </a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item" href="product-management.php">مدیریت
+                                                    <a class="dropdown-item" href="manage-product.php">مدیریت
                                                         محصولات</a>
                                                 </li>
+                                                <?php if ($_SESSION["user_type"] == 'admin') { ?>
                                                 <li>
-                                                <li>
-                                                    <a class="dropdown-item" href="user-management.php">مدیریت
+                                                    <a class="dropdown-item" href="manage-user.php">مدیریت
                                                         کاربران</a>
                                                 </li>
+                                                <?php } ?>
                                             </ul>
                                         </li>
+                                        <?php } ?>
                                         <li class="nav-item">
                                             <a class="nav-link" href="about.php">درباره پروژه</a>
                                         </li>
@@ -116,16 +129,8 @@
                                 <!-- Login -->
                                 <nav class="nav-profile">
 
-                                    <?php
-                                    if (false) { ?>
-                                    <!-- Login btn Start -->
-                                    <a class="login-btn btn-link" href="login.php">
-                                        <i class="bi bi-person me-2 fs-3 align-middle"></i>ورود
-                                    </a>
-                                    <!-- Login btn End -->
-
-                                    <?php } elseif (true) {
-                                    ?>
+                                    <?php //بررسی وضعیت ورود کاربر
+                                    if (isset($_SESSION["state_login"]) && $_SESSION["state_login"] === true) { ?>
 
                                     <ul class="profile-menu navbar-nav mx-auto">
                                         <li class="nav-item dropdown">
@@ -133,9 +138,11 @@
                                                 <!-- User Info Start -->
                                                 <div class="d-flex align-items-center">
                                                     <div class="ms-3">
-                                                        <span class="display-name font-w-6 mb-0"> نام کاربری</span>
-                                                        <span class="display-name font-w-6 mb-0"> -- </span>
-                                                        <small class="text-muted fst-italic">کاربر عادی</small>
+                                                        <span class="display-name font-w-6 mb-0">
+                                                            <?php echo ($_SESSION["name"]) ?></span>
+                                                        <span class="display-name font-w-6 mb-0"> - </span>
+                                                        <small class="text-muted fst-italic">
+                                                            <?php echo ($_SESSION["user_type"]) ?></small>
                                                     </div>
                                                 </div>
                                             </a>
@@ -150,6 +157,13 @@
                                             <!-- User Info End -->
                                         </li>
                                     </ul>
+                                    <?php } else {
+                                    ?>
+                                    <!-- Login btn Start -->
+                                    <a class="login-btn btn-link" href="login.php">
+                                        <i class="bi bi-person me-2 fs-3 align-middle"></i>ورود
+                                    </a>
+                                    <!-- Login btn End -->
 
                                     <?php
                                     }

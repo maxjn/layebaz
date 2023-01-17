@@ -1,12 +1,5 @@
 ## Propozal
 
-مریم لطفی
-09901383998
-mary.2002.lotfi@gmail.com
-
-سه نوع کاربر داریم تو این پروژه مدیر،فروشنده،کاربر عادی.
-صفحاتی که نیاز داریم:
-
 - کاربر عادی:
 
   - صفحه اصلی
@@ -18,38 +11,47 @@ mary.2002.lotfi@gmail.com
   - صفحه مخصولات خریداری شده
 
 - کاربر فروشنده :
+
   - صفحه افزودن محصول
   - مدیریت محصولات خودش
-  - کاربر مدیر:
+
+- کاربر مدیر:
   - مدیریت کاربران
-  - مدیریت محصولات کاربران
-  - مدیریت فروش ها
+  - مدیریت محصولات خودش و کاربران
 
 ### TODO:
 
 - Front End ✓
-- DataBase
-- Back End
+- DataBase ✓
+- Back End ✓
 
 ### Front End TODO:
 
 ##### Main User:
 
-- index
-- product-shop
-- product-single
-- product-bought
-- signup
-- login
-- logout
-- about
-- order-complete
-- product-checkout
+- index صفحه اصلی
+- product-shop نمایش تمام محصولات
+- product-detail نمایش اطلاعات محصول
+- product-bought نمایش محصولات خریداری شده کاربر
+- signup ثبت نام
+- login ورود
+- logout خروج
+- about درباره پروژه
+- product-checkout تکمیل خرید
+- checkout-complete موفقیت خرید
 
 ##### Seller User:
 
-- product-management
+- manage-product مدیریت محصولات
 
 ##### Admin User:
 
-- user-management
+- manage-user مدیریت دسترسی کاربران
+
+### BackEnd End TODO:
+
+- action-signup
+- action-login
+- action-checkout
+- action-manage-product
+- action-manage-user

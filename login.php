@@ -41,18 +41,18 @@ include('inc/header.php')
                 </div>
                 <div class="col-lg-5 col-12 mt-5 mt-lg-0">
                     <div class="border border-light rounded-4 p-5">
-                        <h2 class="mb-5">ورود ره حساب کاربری</h2>
-                        <form id="contact-form" method="post" action="">
+                        <h2 class="mb-5">ورود به حساب کاربری</h2>
+                        <form id="login" method="post" action="action-login.php">
                             <div class="messages"></div>
                             <div class="form-group">
-                                <input id="form_name" type="text" name="name" class="form-control"
+                                <input id="form_name" type="text" name="UserName" class="form-control"
                                     placeholder="نام کاربری" required>
                             </div>
                             <div class="form-group">
-                                <input id="form_password" type="password" name="password" class="form-control"
+                                <input id="form_password" type="password" name="Password" class="form-control"
                                     placeholder="رمز عبور" required>
                             </div>
-                            <button class="btn btn-primary">ورود</button>
+                            <button class="btn btn-primary" type="submit">ورود</button>
                         </form>
                         <div class="d-flex align-items-center mt-4"> <span class="text-muted me-1">حساب کاربری
                                 ندارید؟</span>
