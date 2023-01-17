@@ -1,5 +1,9 @@
 <?php
-include('inc/header.php')
+include('inc/header.php');
+$link = mysqli_connect("localhost", "root", "", "layebazdb"); // ایجاد اتصال به پایگاه داده
+if (mysqli_connect_errno()) //بازگرداندن خطای اتصال پایگاه داده
+    exit("مشکلی در ارتباط پایگاه به جود امده :" . mysqli_connect_error());
+mysqli_query($link, "set names utf8");
 ?>
 <!--hero section start-->
 
@@ -33,19 +37,26 @@ include('inc/header.php')
             <div class="row">
                 <div class="col-lg-12 col-md-12 order-lg-1">
                     <div class="row text-center">
+                        <?php
+                        $query = "SELECT * FROM products ORDER BY productid DESC";             // کوئری نمايش تمام محصولات
+                        $result = mysqli_query($link, $query);            //  اجراي کوئری
+                        while ($row = mysqli_fetch_array($result)) {
+
+                        ?>
                         <!-- product  -->
                         <div class="col-lg-4 col-md-6">
                             <div class="product-item shadow p-4 rounded-4">
                                 <div class="product-img">
-                                    <img class="img-fluid rounded-4" src="assets/images/product/01.jpg" alt="">
+                                    <img class="img-fluid rounded-4" src="assets/images/product/<?= $row['image'] ?>"
+                                        alt="">
                                 </div>
                                 <div class="product-desc">
-                                    <a href="product-single.html"
-                                        class="product-name mt-4 mb-2 d-block link-title h6">کاور پست</a>
-                                    <span class="product-price text-dark">
-                                        <del class="text-muted">$85.00</del> $75.00 </span>
+                                    <a href="product-detail.php?id=<?= $row['productid'] ?>"
+                                        class="product-name mt-4 mb-2 d-block link-title h6">
+                                        <?= $row['name'] ?></a>
+                                    <span class="product-price text-dark"><?= $row['price'] ?> هزار تومان </span>
                                     <div class="product-link mt-3">
-                                        <a class="add-cart" href="product-single.php">
+                                        <a class="add-cart" href="product-detail.php?id=<?= $row['productid'] ?>">
                                             <i class="bi bi-bag-check me-2"></i>خرید</a>
 
                                     </div>
@@ -53,97 +64,8 @@ include('inc/header.php')
                             </div>
                         </div>
                         <!-- product ###  -->
-
-                        <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
-                            <div class="product-item shadow p-4 rounded-4">
-                                <div class="product-img">
-                                    <img class="img-fluid rounded-4" src="assets/images/product/02.jpg" alt="">
-                                </div>
-                                <div class="product-desc">
-                                    <a href="product-single.html"
-                                        class="product-name mt-4 mb-2 d-block link-title h6">کاور پست</a>
-                                    <span class="product-price text-dark">
-                                        <del class="text-muted">$24.00</del> $19.00 </span>
-                                    <div class="product-link mt-3">
-                                        <a class="add-cart" href="product-single.php">
-                                            <i class="bi bi-bag-check me-2"></i>خرید</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mt-5 mt-lg-0">
-                            <div class="product-item shadow p-4 rounded-4">
-                                <div class="product-img">
-                                    <img class="img-fluid rounded-4" src="assets/images/product/03.jpg" alt="">
-                                </div>
-                                <div class="product-desc">
-                                    <a href="product-single.html"
-                                        class="product-name mt-4 mb-2 d-block link-title h6">کاور پست</a>
-                                    <span class="product-price text-dark">
-                                        <del class="text-muted">$76.00</del> $65.00 </span>
-                                    <div class="product-link mt-3">
-                                        <a class="add-cart" href="product-single.php">
-                                            <i class="bi bi-bag-check me-2"></i>خرید</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mt-5">
-                            <div class="product-item shadow p-4 rounded-4">
-                                <div class="product-img">
-                                    <img class="img-fluid rounded-4" src="assets/images/product/04.jpg" alt="">
-                                </div>
-                                <div class="product-desc">
-                                    <a href="product-single.html"
-                                        class="product-name mt-4 mb-2 d-block link-title h6">پوستر</a>
-                                    <span class="product-price text-dark">
-                                        <del class="text-muted">$54.00</del> $50.00 </span>
-                                    <div class="product-link mt-3">
-                                        <a class="add-cart" href="product-single.php">
-                                            <i class="bi bi-bag-check me-2"></i>خرید</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mt-5">
-                            <div class="product-item shadow p-4 rounded-4">
-                                <div class="product-img">
-                                    <img class="img-fluid rounded-4" src="assets/images/product/05.jpg" alt="">
-                                </div>
-                                <div class="product-desc">
-                                    <a href="product-single.html"
-                                        class="product-name mt-4 mb-2 d-block link-title h6">پوستر</a>
-                                    <span class="product-price text-dark">
-                                        <del class="text-muted">$12.00</del> $10.00 </span>
-                                    <div class="product-link mt-3">
-                                        <a class="add-cart" href="product-single.php">
-                                            <i class="bi bi-bag-check me-2"></i>خرید</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mt-5">
-                            <div class="product-item shadow p-4 rounded-4">
-                                <div class="product-img">
-                                    <img class="img-fluid rounded-4" src="assets/images/product/06.jpg" alt="">
-                                </div>
-                                <div class="product-desc">
-                                    <a href="product-single.html"
-                                        class="product-name mt-4 mb-2 d-block link-title h6">کارت ویزیت</a>
-                                    <span class="product-price text-dark">
-                                        <del class="text-muted">$62.00</del> $48.00 </span>
-                                    <div class="product-link mt-3">
-                                        <a class="add-cart" href="product-single.php">
-                                            <i class="bi bi-bag-check me-2"></i>خرید</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        } ?>
                     </div>
 
                 </div>

@@ -148,8 +148,11 @@
 <!--== theme-script -->
 <script src="assets/js/theme-script.js"></script>
 
-<!-- inject js end -->
+<!--== Alert-script -->
+<script src="assets/js/alert.js"></script>
 
+<!-- inject js end -->
+<?php include('inc/alert.php'); ?>
 </body>
 
 </html>

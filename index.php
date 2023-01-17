@@ -1,5 +1,9 @@
 <?php
 include('inc/header.php');
+$link = mysqli_connect("localhost", "root", "", "layebazdb"); // ایجاد اتصال به پایگاه داده
+if (mysqli_connect_errno()) //بازگرداندن خطای اتصال پایگاه داده
+    exit("مشکلی در ارتباط پایگاه به جود امده :" . mysqli_connect_error());
+mysqli_query($link, "set names utf8");
 ?>
 <!--hero section start-->
 <section class="overflow-hidden position-relative">
@@ -169,6 +173,53 @@ include('inc/header.php');
     </section>
     <!--counter end-->
 
+    <!-- Last Products -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 order-lg-1">
+                    <div class="row text-center">
+                        <?php
+                        $counter = 0;
+                        $query = "SELECT * FROM products ORDER BY productid DESC";             // کوئری نمايش 3 محصول آخر
+                        $result = mysqli_query($link, $query);            //  اجراي کوئری
+                        while ($row = mysqli_fetch_array($result)) {
+                            if ($counter == 3) {
+                                break;
+                            }
+                            $counter++;
+                        ?>
+                        <!-- product  -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-item shadow p-4 rounded-4">
+                                <div class="product-img">
+                                    <img class="img-fluid rounded-4" src="assets/images/product/<?= $row['image'] ?>"
+                                        alt="">
+                                </div>
+                                <div class="product-desc">
+                                    <a href="product-detail.php?id=<?= $row['productid'] ?>"
+                                        class="product-name mt-4 mb-2 d-block link-title h6">
+                                        <?= $row['name'] ?></a>
+                                    <span class="product-price text-dark"><?= $row['price'] ?> هزار تومان </span>
+                                    <div class="product-link mt-3">
+                                        <a class="add-cart" href="product-detail.php?id=<?= $row['productid'] ?>">
+                                            <i class="bi bi-bag-check me-2"></i>خرید</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- product ###  -->
+                        <?php
+                        } ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Last Products -->
+
 
     <!--testimonial start-->
 
@@ -326,7 +377,7 @@ include('inc/header.php');
                                     <div>
                                         <small class="mb-2">کاور پست</small>
                                         <h6 class="mb-0">
-                                            <a class="btn-link" href="product-single.php">موزیک 1</a>
+                                            <a class="btn-link" href="product-shop.php">کاور پست طرح موزیک</a>
                                         </h6>
                                     </div>
                                     <a class="popup-img btn-link" href="assets/images/product/01.jpg">
@@ -342,7 +393,7 @@ include('inc/header.php');
                                     <div>
                                         <small class="mb-2">کاور پست</small>
                                         <h6 class="mb-0">
-                                            <a class="btn-link" href="product-single.php">موزیک 2</a>
+                                            <a class="btn-link" href="product-shop.php">کاور پست طرح انگلیسی</a>
                                         </h6>
                                     </div>
                                     <a class="popup-img btn-link" href="assets/images/product/02.jpg">
@@ -358,7 +409,7 @@ include('inc/header.php');
                                     <div>
                                         <small class="mb-2">کاور پست</small>
                                         <h6 class="mb-0">
-                                            <a class="btn-link" href="product-single.php">موزیک 3</a>
+                                            <a class="btn-link" href="product-shop.php">کاور پست طرح سمینار</a>
                                         </h6>
                                     </div>
                                     <a class="popup-img btn-link" href="assets/images/product/03.jpg">
@@ -374,7 +425,7 @@ include('inc/header.php');
                                     <div>
                                         <small class="mb-2">پوستر </small>
                                         <h6 class="mb-0">
-                                            <a class="btn-link" href="product-single.php">پوستر 1</a>
+                                            <a class="btn-link" href="product-shop.php">پوستر لوازم آرایشی</a>
                                         </h6>
                                     </div>
                                     <a class="popup-img btn-link" href="assets/images/product/04.jpg">
@@ -390,7 +441,7 @@ include('inc/header.php');
                                     <div>
                                         <small class="mb-2">پوستر</small>
                                         <h6 class="mb-0">
-                                            <a class="btn-link" href="product-single.php">پوستر 2</a>
+                                            <a class="btn-link" href="product-shop.php">پوستر کفش</a>
                                         </h6>
                                     </div>
                                     <a class="popup-img btn-link" href="assets/images/product/05.jpg">
@@ -406,7 +457,7 @@ include('inc/header.php');
                                     <div>
                                         <small class="mb-2">کارت ویزیت</small>
                                         <h6 class="mb-0">
-                                            <a class="btn-link" href="product-single.php">فروشگاه آنلاین</a>
+                                            <a class="btn-link" href="product-shop.php">کارت فروشگاه </a>
                                         </h6>
                                     </div>
                                     <a class="popup-img btn-link" href="assets/images/product/06.jpg">
