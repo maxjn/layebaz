@@ -1,5 +1,15 @@
 <?php
-include('inc/header.php')
+include('inc/header.php');
+//وضعیت ورود کار بر را بررسی و در صورت ورود قبلی به صفحه اصلی هدایت می کند
+if (isset($_SESSION["state_login"]) && $_SESSION["state_login"] === true) {
+?>
+<script type="text/javascript">
+location.replace("index.php");
+</script>
+
+<?php
+    exit();
+}
 ?>
 <!--hero section start-->
 

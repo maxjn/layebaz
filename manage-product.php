@@ -42,7 +42,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'EDIT') {
 }
 
 ?>
-?>
+
 <!--hero section start-->
 
 <section class="position-relative overflow-hidden">
