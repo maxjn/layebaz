@@ -76,19 +76,15 @@ if ($row = mysqli_fetch_array($result)) {
 
 
                         <?php
-                            if (isset($_SESSION["state_login"]) && $_SESSION["state_login"] === true) {
-                                $query_sell = "SELECT * FROM sells WHERE userid='{$_SESSION['userid']}' AND productid='$product_id'";
-                                $result_sell = mysqli_query($link, $query_sell);    //  جراي کوئری برای برسی خرید های کاربر
+                            $query_sell = "SELECT * FROM sells WHERE userid='{$_SESSION['userid']}' AND productid='$product_id'";
+                            $result_sell = mysqli_query($link, $query_sell);    //  جراي کوئری برای برسی خرید های کاربر
+                            if (isset($_SESSION["state_login"]) && $_SESSION["state_login"] === true && $row_sell = mysqli_fetch_array($result_sell)) {
+
                                 //اگر کاربر وارد شده بود و محصول را خریده بود لینک دانلود نمایش داده خواهد شد
-                                if ($row_sell = mysqli_fetch_array($result_sell)) {
                             ?>
                         <a class="btn btn-primary" href="<?= $row['link'] ?>">دانلود محصول</a>
                         <?php
-                                } else {
-                                ?>
-                        <a class="btn btn-primary" href="product-checkout.php?id=<?= $row['productid'] ?>">خرید</a>
-                        <?php
-                                }
+
                             } else { ?>
                         <a class="btn btn-primary" href="product-checkout.php?id=<?= $row['productid'] ?>">خرید</a>
                         <?php }  ?>

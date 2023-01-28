@@ -26,7 +26,9 @@ if (!(isset($_GET['action']) && $_GET['action'] == 'DELETE')) {
         isset($_POST['Link']) && !empty(Trim($_POST['Link'])) &&
         isset($_POST['Description']) && !empty(Trim($_POST['Description'])))) {
         // ذخيره اطلاعاتي
+
         $ProductId = $_POST['ProductId'];
+
         $Name = $_POST['Name'];
         $Price = $_POST['Price'];
         $Link = $_POST['Link'];
